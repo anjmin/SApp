@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qfedu.dao.PictureDao">
+    <resultMap id="pictureMap" type="com.qfedu.pojo.Picture">
+        <id column="id" property="id"></id>
+        <result column="path" property="path"></result>
+        <result column="status" property="status"></result>
+    </resultMap>
+    <insert id="insertSelective" parameterType="picture">
+        insert INTO picture VALUE (null,#{path},#{status})
+    </insert>
+
+    <insert id="sdda" >
+        insert INTO  t VALUES
+        <foreach collection="rids"></foreach>
+    </insert>
+
+    <select id="showPicture" resultMap="pictureMap">
+        SELECT p.path from goods g LEFT JOIN picture p on g.pid = p.id LIMIT 0,4
+    </select>
+
+
+</mapper>
